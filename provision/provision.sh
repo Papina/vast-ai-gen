@@ -29,14 +29,16 @@ NODES=(
     "https://github.com/pythongosssss/ComfyUI-Custom-Scripts"
     "https://github.com/rgthree/rgthree-comfy"
     "https://github.com/spacepxl/ComfyUI-Image-Filters"
+    "https://github.com/willmiao/ComfyUI-Lora-Manager"
 )
 
 WORKFLOWS=(
 
 )
-
+    #"https://civitai.com/models/443821/cyberrealistic-pony"
 CHECKPOINT_MODELS=(
-    "https://civitai.com/api/download/models/2334591?type=Model&format=SafeTensor&size=full&fp=fp32"
+    "https://civitai.com/api/download/models/2334591?type=Model&format=SafeTensor&size=pruned&fp=fp16"
+
 )
 
 UNET_MODELS=(
