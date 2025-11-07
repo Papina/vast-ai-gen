@@ -28,18 +28,30 @@ NODES=(
     "https://github.com/rgthree/rgthree-comfy"
     "https://github.com/spacepxl/ComfyUI-Image-Filters"
     "https://github.com/willmiao/ComfyUI-Lora-Manager"
+
+    "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite"
+    "https://github.com/Fannovel16/ComfyUI-Frame-Interpolation"
+    "https://github.com/Artificial-Sweetener/comfyui-WhiteRabbit"
+    "https://github.com/stduhpf/ComfyUI-WanMoeKSampler"
 )
 
 WORKFLOWS=(
 
 )
 
+# ~36GB
 CHECKPOINT_MODELS=(
     "https://civitai.com/api/download/models/2334591?type=Model&format=SafeTensor&size=pruned&fp=fp16" # CyberRealistic Pony v14.1 - 6.5GB
-    "https://civitai.com/api/download/models/2342708?type=Model&format=SafeTensor&size=full&fp=fp8" # DaSiWa WAN 2.2 I2V 14B Lightspeed - 14GB
+    "https://civitai.com/api/download/models/2342708?type=Model&format=SafeTensor&size=full&fp=fp8" # DaSiWa WAN 2.2 I2V 14B Lightspeed - 14GB High Noise
+    "https://civitai.com/api/download/models/2342740?type=Model&format=SafeTensor&size=full&fp=fp8" # DaSiWa WAN 2.2 I2V 14B Lightspeed - 14GB Low Noise
+)
+
+# ~20GB
+DIFFUSION_MODELS=(
     "https://huggingface.co/Comfy-Org/Qwen-Image-Edit_ComfyUI/resolve/main/split_files/diffusion_models/qwen_image_edit_2509_fp8_e4m3fn.safetensors" #QWEN Image EDIT 2509 20GB
 )
 
+# ~17GB
 TEXT_ENCODERS=(
     "https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors" # 6.8GB
     "https://huggingface.co/Comfy-Org/Qwen-Image_ComfyUI/resolve/main/split_files/text_encoders/qwen_2.5_vl_7b_fp8_scaled.safetensors" # 9.4GB
@@ -48,13 +60,17 @@ TEXT_ENCODERS=(
 UNET_MODELS=(
 )
 
+# ~3GB
 LORA_MODELS=(
     "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/loras/wan2.2_i2v_lightx2v_4steps_lora_v1_high_noise.safetensors" #1.3GB
     "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/loras/wan2.2_i2v_lightx2v_4steps_lora_v1_low_noise.safetensors". #1.3GB
+    "https://huggingface.co/lightx2v/Qwen-Image-Lightning/resolve/main/Qwen-Image-Edit-2509/Qwen-Image-Edit-2509-Lightning-4steps-V1.0-bf16.safetensors" # 811MB
 )
 
+# ~500MB
 VAE_MODELS=(
     "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/vae/wan_2.1_vae.safetensors" # 254MB
+    "https://huggingface.co/Comfy-Org/Qwen-Image_ComfyUI/resolve/main/split_files/vae/qwen_image_vae.safetensors" # 250MB
 )
 
 ESRGAN_MODELS=(
@@ -78,6 +94,9 @@ function provisioning_start() {
     provisioning_get_files \
         "${COMFYUI_DIR}/models/checkpoints" \
         "${CHECKPOINT_MODELS[@]}"
+    provisioning_get_files \
+        "${COMFYUI_DIR}/models/diffusion_models" \
+        "${DIFFUSION_MODELS[@]}"
     provisioning_get_files \
         "${COMFYUI_DIR}/models/text_encoders" \
         "${TEXT_ENCODERS[@]}"
