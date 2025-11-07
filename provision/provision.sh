@@ -58,13 +58,19 @@ TEXT_ENCODERS=(
 )
 
 UNET_MODELS=(
+
 )
 
-# ~3GB
+# ~33GB
 LORA_MODELS=(
     "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/loras/wan2.2_i2v_lightx2v_4steps_lora_v1_high_noise.safetensors" #1.3GB
     "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/loras/wan2.2_i2v_lightx2v_4steps_lora_v1_low_noise.safetensors". #1.3GB
     "https://huggingface.co/lightx2v/Qwen-Image-Lightning/resolve/main/Qwen-Image-Edit-2509/Qwen-Image-Edit-2509-Lightning-4steps-V1.0-bf16.safetensors" # 811MB
+    # "https://civitai.com/api/download/models/2274776?type=Model&format=Diffusers"  # Secret Sauce 28GB
+    "https://civitai.com/api/download/models/2239404?type=Model&format=SafeTensor" # Micro Bikini / Sling Bikini Low 300MB
+    "https://civitai.com/api/download/models/2239110?type=Model&format=SafeTensor" # Micro Bikini / Sling Bikini High 300MB
+    "https://civitai.com/api/download/models/2270582?type=Model&format=SafeTensor" # v4 Instagram Women (Wan 2.1 & 2.2) - Official 2.2 Low 300MB
+    "https://civitai.com/api/download/models/2270577?type=Model&format=SafeTensor" # v4 Instagram Women (Wan 2.1 & 2.2) - Official 2.2 High 300MB
 )
 
 # ~500MB
