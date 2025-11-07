@@ -1,0 +1,43 @@
+# OCI Authentication - Replace these with your actual values
+tenancy_ocid        = "ocid1.tenancy.oc1.phx.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+user_ocid           = "ocid1.user.oc1.phx.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+api_key_fingerprint = "xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx"
+api_key_path        = "~/.oci/oci_api_key.pem"
+region              = "ap-sydney-1"
+
+# Compartment Configuration
+# Just specify the compartment name - OCID and availability domain will be derived automatically
+compartment_name = "main-env"
+
+# Network Configuration (optional - defaults are provided)
+vcn_cidr           = "10.0.0.0/16"
+subnet_cidr        = "10.0.1.0/24"
+
+# SSH Configuration (optional - defaults are provided)
+ssh_public_key_path = "~/.ssh/id_rsa.pub"
+
+# Compute Configuration
+# For a Docker build instance, consider these shapes:
+# VM.Standard2.1 (1 CPU, 15GB RAM) - Good for small builds
+# VM.Standard2.2 (2 CPU, 30GB RAM) - Better for moderate builds
+# VM.Standard2.4 (4 CPU, 60GB RAM) - Good for large builds
+# VM.Optimized3.Flex (flexible CPU/Memory)
+
+# Using a standard shape:
+instance_shape = "VM.Standard2.2"
+
+# OR using a flexible shape (uncomment and configure):
+# instance_shape    = "VM.Optimized3.Flex"
+# instance_cpu      = 4
+# instance_memory   = 16
+
+# Instance Details
+docker_build_instance_name = "docker-build-instance"
+
+# Ubuntu Image OCID (find this in OCI Console -> Compute -> Custom Images)
+# You can use data source or manually specify the OCID
+# For Sydney region, Ubuntu 22.04 images are available
+ubuntu_image_id = "ocid1.image.oc1.ap-sydney-1.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+# Project Configuration
+project_name = "docker-build-environment"
