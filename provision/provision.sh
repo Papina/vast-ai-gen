@@ -58,6 +58,9 @@ VAE_MODELS=(
 )
 
 ESRGAN_MODELS=(
+)
+
+UPSCALE_MODELS=(
     "https://huggingface.co/FacehugmanIII/4x_foolhardy_Remacri/resolve/main/4x_foolhardy_Remacri.pth" #67MB
 )
 
@@ -93,6 +96,9 @@ function provisioning_start() {
     provisioning_get_files \
         "${COMFYUI_DIR}/models/esrgan" \
         "${ESRGAN_MODELS[@]}"
+    provisioning_get_files \
+        "${COMFYUI_DIR}/models/upscale_models" \
+        "${UPSCALE_MODELS[@]}"        
     provisioning_print_end
 }
 
