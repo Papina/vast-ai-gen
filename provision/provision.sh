@@ -73,7 +73,9 @@ VAE_MODELS=(
     "https://huggingface.co/Comfy-Org/Qwen-Image_ComfyUI/resolve/main/split_files/vae/qwen_image_vae.safetensors" # 250MB
 )
 
+# ~50MB
 ESRGAN_MODELS=(
+    "https://huggingface.co/Comfy-Org/Real-ESRGAN_repackaged/resolve/main/RealESRGAN_x4plus.safetensors" # 50MB
 )
 
 UPSCALE_MODELS=(
