@@ -16,13 +16,11 @@ PIP_PACKAGES=(
 )
 
 NODES=(
-    "https://github.com/ltdrdata/ComfyUI-Manager"
     "https://github.com/Extraltodeus/Skimmed_CFG"
     "https://github.com/Fannovel16/comfyui_controlnet_aux"
     "https://github.com/M1kep/ComfyLiterals"
     "https://github.com/alexopus/ComfyUI-Image-Saver"
     "https://github.com/cubiq/ComfyUI_IPAdapter_plus"
-    "https://github.com/cubiq/ComfyUI_essentials"
     "https://github.com/jags111/efficiency-nodes-comfyui"
     "https://github.com/kijai/ComfyUI-KJNodes"
     "https://github.com/ltdrdata/ComfyUI-Impact-Pack"
@@ -35,26 +33,33 @@ NODES=(
 WORKFLOWS=(
 
 )
-    #"https://civitai.com/models/443821/cyberrealistic-pony"
-CHECKPOINT_MODELS=(
-    "https://civitai.com/api/download/models/2334591?type=Model&format=SafeTensor&size=pruned&fp=fp16"
 
+CHECKPOINT_MODELS=(
+    "https://civitai.com/api/download/models/2334591?type=Model&format=SafeTensor&size=pruned&fp=fp16" # CyberRealistic Pony v14.1 - 6.5GB
+)
+
+TEXT_ENCODERS=(
+    "https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors" # 6.8GB
 )
 
 UNET_MODELS=(
 )
 
 LORA_MODELS=(
+    "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/loras/wan2.2_i2v_lightx2v_4steps_lora_v1_high_noise.safetensors" #1.3GB
+    "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/loras/wan2.2_i2v_lightx2v_4steps_lora_v1_low_noise.safetensors". #1.3GB
 )
 
 VAE_MODELS=(
+    "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/vae/wan_2.1_vae.safetensors" # 254MB
 )
 
 ESRGAN_MODELS=(
-    "https://huggingface.co/FacehugmanIII/4x_foolhardy_Remacri/resolve/main/4x_foolhardy_Remacri.pth"
+    "https://huggingface.co/FacehugmanIII/4x_foolhardy_Remacri/resolve/main/4x_foolhardy_Remacri.pth" #67MB
 )
 
 CONTROLNET_MODELS=(
+    "https://huggingface.co/comfyanonymous/ControlNet-v1-1_fp16_safetensors/resolve/main/control_v11p_sd15_openpose_fp16.safetensors" # 723MB
 )
 
 ### DO NOT EDIT BELOW HERE UNLESS YOU KNOW WHAT YOU ARE DOING ###
@@ -67,6 +72,9 @@ function provisioning_start() {
     provisioning_get_files \
         "${COMFYUI_DIR}/models/checkpoints" \
         "${CHECKPOINT_MODELS[@]}"
+    provisioning_get_files \
+        "${COMFYUI_DIR}/models/text_encoders" \
+        "${TEXT_ENCODERS[@]}"
     provisioning_get_files \
         "${COMFYUI_DIR}/models/unet" \
         "${UNET_MODELS[@]}"
@@ -100,7 +108,7 @@ function provisioning_get_pip_packages() {
 function provisioning_get_nodes() {
     for repo in "${NODES[@]}"; do
         dir="${repo##*/}"
-        path="${COMFYUI_DIR}custom_nodes/${dir}"
+        path="${COMFYUI_DIR}/custom_nodes/${dir}"
         requirements="${path}/requirements.txt"
         if [[ -d $path ]]; then
             if [[ ${AUTO_UPDATE,,} != "false" ]]; then
@@ -184,9 +192,10 @@ function provisioning_download() {
         auth_token="$CIVITAI_TOKEN"
     fi
     if [[ -n $auth_token ]];then
-        wget --header="Authorization: Bearer $auth_token" -qnc --content-disposition --show-progress -e dotbytes="${3:-4M}" -P "$2" "$1"
+        echo curl -L --progress-bar -J -O --output-dir "$2" -H "Authorization: Bearer $auth_token" "$1"
+        curl -L --progress-bar -J -O --output-dir "$2" -H "Authorization: Bearer $auth_token" "$1"
     else
-        wget -qnc --content-disposition --show-progress -e dotbytes="${3:-4M}" -P "$2" "$1"
+        curl -L --progress-bar -J -O --output-dir "$2" "$1"
     fi
 }
 
