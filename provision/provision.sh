@@ -15,6 +15,7 @@ PIP_PACKAGES=(
     #"package-2"
 )
 
+# ~30 Minutes for the ComfyUI custom nodes
 NODES=(
     "https://github.com/Extraltodeus/Skimmed_CFG"
     "https://github.com/Fannovel16/comfyui_controlnet_aux"
@@ -38,6 +39,7 @@ NODES=(
 WORKFLOWS=(
 
 )
+
 
 # ~36GB
 CHECKPOINT_MODELS=(
