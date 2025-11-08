@@ -42,8 +42,8 @@ WORKFLOWS=(
 # ~36GB
 CHECKPOINT_MODELS=(
     "https://civitai.com/api/download/models/2334591?type=Model&format=SafeTensor&size=pruned&fp=fp16" # CyberRealistic Pony v14.1 - 6.5GB
-    "https://civitai.com/api/download/models/2342708?type=Model&format=SafeTensor&size=full&fp=fp8" # DaSiWa WAN 2.2 I2V 14B Lightspeed - 14GB High Noise
-    "https://civitai.com/api/download/models/2342740?type=Model&format=SafeTensor&size=full&fp=fp8" # DaSiWa WAN 2.2 I2V 14B Lightspeed - 14GB Low Noise
+    "https://civitai.com/api/download/models/2342708?type=Model&format=SafeTensor&size=full&fp=fp8"    # DaSiWa WAN 2.2 I2V 14B Lightspeed - 14GB High Noise
+    "https://civitai.com/api/download/models/2342740?type=Model&format=SafeTensor&size=full&fp=fp8"    # DaSiWa WAN 2.2 I2V 14B Lightspeed - 14GB Low Noise
 )
 
 # ~20GB
@@ -227,11 +227,13 @@ function provisioning_download() {
         [[ -n $CIVITAI_TOKEN && $1 =~ ^https://([a-zA-Z0-9_-]+\.)?civitai\.com(/|$|\?) ]]; then
         auth_token="$CIVITAI_TOKEN"
     fi
+
+    echo "--> $1 into $2"
     if [[ -n $auth_token ]];then
-        echo curl -L --progress-bar -J -O --output-dir "$2" -H "Authorization: Bearer $auth_token" "$1"
-        curl -L --progress-bar -J -O --output-dir "$2" -H "Authorization: Bearer $auth_token" "$1"
+        echo "--> $1 into $2"
+        curl -L -J -O --output-dir "$2" -H "Authorization: Bearer $auth_token" "$1"
     else
-        curl -L --progress-bar -J -O --output-dir "$2" "$1"
+        curl -L -J -O --output-dir "$2" "$1"
     fi
 }
 
@@ -239,4 +241,3 @@ function provisioning_download() {
 if [[ ! -f /.noprovisioning ]]; then
     provisioning_start
 fi
-
