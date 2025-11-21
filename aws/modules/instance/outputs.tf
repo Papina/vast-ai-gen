@@ -1,46 +1,79 @@
-# Outputs for Instance Module
-
-output "instance_ids" {
-  description = "List of IDs of the instances"
-  value       = aws_instance.main[*].id
+# # Outputs for Instance Module
+output "chosen_ami" {
+  description = "AMI ID chosen for the instance"
+  value       = data.aws_ami.retrieve
 }
+# output "instance_tags" {
+#   description = "Tags applied to the instances"
+#   value       = aws_instance.main[*].tags
+# }
 
-output "instance_public_ips" {
-  description = "List of public IP addresses of the instances"
-  value       = aws_instance.main[*].public_ip
-}
+# output "instance_availability_zone" {
+#   description = "Availability zone of the instances"
+#   value       = aws_instance.main[*].availability_zone
+# }
 
-output "instance_private_ips" {
-  description = "List of private IP addresses of the instances"
-  value       = aws_instance.main[*].private_ip
-}
+# output "instance_instance_type" {
+#   description = "Instance type of the instances"
+#   value       = aws_instance.main[*].instance_type
+# }
 
-output "instance_public_dns" {
-  description = "List of public DNS names of the instances"
-  value       = aws_instance.main[*].public_dns
-}
+# output "instance_ebs_block_device" {
+#   description = "EBS block device configuration of the instances"
+#   value       = aws_instance.main[*].ebs_block_device
+# }
 
-output "instance_private_dns" {
-  description = "List of private DNS names of the instances"
-  value       = aws_instance.main[*].private_dns
-}
+# output "instance_root_block_device" {
+#   description = "Root block device configuration of the instances"
+#   value       = aws_instance.main[*].root_block_device
+# }
 
-output "instance_state" {
-  description = "List of instance states"
-  value       = aws_instance.main[*].state
-}
+# output "instance_ephemeral_block_device" {
+#   description = "Ephemeral block device configuration of the instances"
+#   value       = aws_instance.main[*].ephemeral_block_device
+# }
 
-output "instance_arn" {
-  description = "ARN of the instances"
-  value       = aws_instance.main[*].arn
-}
+# "output "instance_ids" {
+#   description = "List of IDs of the instances"
+#   value       = aws_instance.main[*].id
+# }
 
-output "key_pair_name" {
-  description = "Name of the key pair created"
-  value       = aws_key_pair.main.key_name
-}
+# output "instance_public_ips" {
+#   description = "List of public IP addresses of the instances"
+#   value       = aws_instance.main[*].public_ip
+# }
 
-output "key_pair_fingerprint" {
-  description = "Fingerprint of the key pair"
-  value       = aws_key_pair.main.fingerprint
-}
+# output "instance_private_ips" {
+#   description = "List of private IP addresses of the instances"
+#   value       = aws_instance.main[*].private_ip
+# }
+
+# output "instance_public_dns" {
+#   description = "List of public DNS names of the instances"
+#   value       = aws_instance.main[*].public_dns
+# }
+
+# output "instance_private_dns" {
+#   description = "List of private DNS names of the instances"
+#   value       = aws_instance.main[*].private_dns
+# }
+
+# output "instance_state" {
+#   description = "List of instance states"
+#   value       = aws_instance.main[*].state
+# }
+
+# output "instance_arn" {
+#   description = "ARN of the instances"
+#   value       = aws_instance.main[*].arn
+# }
+
+# output "key_pair_name" {
+#   description = "Name of the key pair created"
+#   value       = aws_key_pair.main.key_name
+# }
+
+# output "key_pair_fingerprint" {
+#   description = "Fingerprint of the key pair"
+#   value       = aws_key_pair.main.fingerprint
+# }

@@ -13,24 +13,30 @@ module "vpc" {
   env            = var.env
 }
 
-# # Create EC2 Instances
-# module "instances" {
-#   source = "./modules/instance"
+# Create the Security Groups
+module "security_groups" {
+  source = "./modules/security_group"
 
-#   project_name           = var.project_name
-#   environment            = var.environment
-#   purpose               = var.purpose
-#   instance_count        = var.instance_count
-#   ami_id               = var.ami_id
-#   instance_type        = var.instance_type
-#   subnet_ids           = module.vpc.public_subnet_ids
-#   security_group_ids   = [module.vpc.web_security_group_id, module.vpc.ssh_security_group_id]
-#   key_name            = var.key_name
-#   public_key_path     = var.public_key_path
-#   user_data           = var.user_data
-#   root_volume_type    = var.root_volume_type
-#   root_volume_size    = var.root_volume_size
-#   encrypt_root_volume = var.encrypt_root_volume
+  vpc_id = module.vpc.vpc.vpc_id
+  name = "linux-ssh"
+}
+
+# Create EC2 Instances
+module "instances" {
+  source = "./modules/instance"
 
 
-# }
+  # instance_count        = var.instance_count
+
+  # instance_type        = var.instance_type
+  subnet_ids           = module.vpc.vpc.public.subnet_ids
+  security_group_ids   = [module.security_groups.security_group_id]
+  key_name            = "Old Faithful"
+
+  user_data           = file("user-data.sh")
+  # root_volume_type    = var.root_volume_type
+  # root_volume_size    = var.root_volume_size
+  # encrypt_root_volume = var.encrypt_root_volume
+
+
+}

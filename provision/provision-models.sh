@@ -17,37 +17,7 @@ PIP_PACKAGES=(
 
 # ~30 Minutes for the ComfyUI custom nodes
 NODES=(
-    # Always Need
-    "https://github.com/kijai/ComfyUI-KJNodes"
-    "https://github.com/ltdrdata/ComfyUI-Impact-Pack"   
-    "https://github.com/rgthree/rgthree-comfy"
-    "https://github.com/pythongosssss/ComfyUI-Custom-Scripts"
 
-    "https://github.com/justUmen/Bjornulf_custom_nodes"
-    "https://github.com/kijai/ComfyUI-MMAudio"
-    "https://github.com/Artificial-Sweetener/comfyui-WhiteRabbit"
-    "https://github.com/Extraltodeus/Skimmed_CFG"
-    "https://github.com/Fannovel16/ComfyUI-Frame-Interpolation"
-    "https://github.com/Fannovel16/comfyui_controlnet_aux"
-    "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite"
-    "https://github.com/LukeCoulson1/Comfyui_LoraCombine"
-    "https://github.com/M1kep/ComfyLiterals"
-    "https://github.com/SeargeDP/SeargeSDXL"
-    "https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes"
-    "https://github.com/alexopus/ComfyUI-Image-Saver"
-    "https://github.com/chibiace/ComfyUI-Chibi-Nodes"
-    "https://github.com/cubiq/ComfyUI_IPAdapter_plus"
-    "https://github.com/giriss/comfy-image-saver"
-    "https://github.com/jags111/efficiency-nodes-comfyui"
-    "https://github.com/jamesWalker55/comfyui-various"
-    "https://github.com/moonwhaler/comfyui-seedvr2-tilingupscaler"
-    "https://github.com/receyuki/comfyui-prompt-reader-node"
-    "https://github.com/spacepxl/ComfyUI-Image-Filters"
-    "https://github.com/stduhpf/ComfyUI-WanMoeKSampler"
-    "https://github.com/twri/sdxl_prompt_styler"
-    "https://github.com/un-seen/comfyui-tensorops"
-    "https://github.com/vrgamegirl19/comfyui-vrgamedevgirl"
-    "https://github.com/willmiao/ComfyUI-Lora-Manager"
 )
 
 WORKFLOWS=(
@@ -60,8 +30,6 @@ CHECKPOINT_MODELS=(
     "https://civitai.com/api/download/models/2334591?type=Model&format=SafeTensor&size=pruned&fp=fp16" # CyberRealistic Pony v14.1 - 6.5GB
     "https://civitai.com/api/download/models/2388548?type=Model&format=SafeTensor&size=full&fp=fp8"    # aSiWa WAN 2.2 I2V 14B Lightspeed MidnightFlirt - 14GB High Noise
     "https://civitai.com/api/download/models/2388627?type=Model&format=SafeTensor&size=full&fp=fp8"    # aSiWa WAN 2.2 I2V 14B Lightspeed MidnightFlirt - 14GB Low Noise
-   # "https://civitai.com/api/download/models/2342708?type=Model&format=SafeTensor&size=full&fp=fp8"    # DaSiWa WAN 2.2 I2V 14B Lightspeed LureNoir - 14GB High Noise
-   # "https://civitai.com/api/download/models/2342740?type=Model&format=SafeTensor&size=full&fp=fp8"    # DaSiWa WAN 2.2 I2V 14B Lightspeed LureNoir - 14GB Low Noise
 )
 
 # ~20GB
@@ -99,15 +67,15 @@ VAE_MODELS=(
 
 # ~50MB
 ESRGAN_MODELS=(
-    #"https://huggingface.co/Comfy-Org/Real-ESRGAN_repackaged/resolve/main/RealESRGAN_x4plus.safetensors" # 50MB
+    "https://huggingface.co/Comfy-Org/Real-ESRGAN_repackaged/resolve/main/RealESRGAN_x4plus.safetensors" # 50MB
 )
 
 UPSCALE_MODELS=(
-#    "https://huggingface.co/FacehugmanIII/4x_foolhardy_Remacri/resolve/main/4x_foolhardy_Remacri.pth" #67MB
+   "https://huggingface.co/FacehugmanIII/4x_foolhardy_Remacri/resolve/main/4x_foolhardy_Remacri.pth" #67MB
 )
 
 CONTROLNET_MODELS=(
-    # "https://huggingface.co/comfyanonymous/ControlNet-v1-1_fp16_safetensors/resolve/main/control_v11p_sd15_openpose_fp16.safetensors" # 723MB
+    "https://huggingface.co/comfyanonymous/ControlNet-v1-1_fp16_safetensors/resolve/main/control_v11p_sd15_openpose_fp16.safetensors" # 723MB
 )
 
 ### DO NOT EDIT BELOW HERE UNLESS YOU KNOW WHAT YOU ARE DOING ###

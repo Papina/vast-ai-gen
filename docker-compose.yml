@@ -1,0 +1,72 @@
+services:
+
+  papina:
+    image: papina/comfyui:latest
+    container_name: "papina"
+    ports:
+      - 1111:1111
+      - 8080:8080
+      - 8384:8384
+      - 8188:8188
+      - 8288:8288
+    environment:
+      # - COMFYUI_VERSION=latest
+      - COMFYUI_ARGS="--disable-auto-launch --port 18188 --enable-cors-header --disable-xformers --cpu"
+      - COMFYUI_API_BASE=http://localhost:18188
+      - PORTAL_CONFIG="localhost:1111:11111:/:Instance Portal|localhost:8188:18188:/:ComfyUI|localhost:8288:18288:/docs:API Wrapper|localhost:8188:18188:/:ComfyUI|localhost:8080:18080:/:Jupyter|localhost:8080:8080:/terminals/1:Jupyter Terminal|localhost:8384:18384:/:Syncthing"
+      - OPEN_BUTTON_PORT=1111
+      - JUPYTER_DIR=/
+      - DATA_DIRECTORY=/workspace/
+      - OPEN_BUTTON_TOKEN=1
+
+      # Don't enclose values in quotes
+      - AUTO_UPDATE=${AUTO_UPDATE:-false}
+      - DIRECT_ADDRESS=${DIRECT_ADDRESS:-127.0.0.1}
+      - DIRECT_ADDRESS_GET_WAN=${DIRECT_ADDRESS_GET_WAN:-false}
+      - WORKSPACE=${WORKSPACE:-/workspace}
+      - WORKSPACE_SYNC=${WORKSPACE_SYNC:-false}
+      - CF_TUNNEL_TOKEN=${CF_TUNNEL_TOKEN:-}
+      - CF_QUICK_TUNNELS=${CF_QUICK_TUNNELS:-true}
+      - CIVITAI_TOKEN=${CIVITAI_TOKEN:-}
+      - HF_TOKEN=${HF_TOKEN:-}
+      - WEB_ENABLE_AUTH=${WEB_ENABLE_AUTH:-true}
+      - WEB_ENABLE_HTTPS=${WEB_ENABLE_HTTPS:-false}
+      - WEB_USER=${WEB_USER:-user}
+      - WEB_PASSWORD=${WEB_PASSWORD:-password}
+      - SSH_PORT_HOST=${SSH_PORT_HOST:-2222}
+      - SERVICEPORTAL_PORT_HOST=${SERVICEPORTAL_PORT_HOST:-1111}
+      - SERVICEPORTAL_METRICS_PORT=${SERVICEPORTAL_METRICS_PORT:-21111}
+      - SERVICEPORTAL_URL=${SERVICEPORTAL_URL:-}
+      # - COMFYUI_ARGS=${COMFYUI_ARGS:-}
+      - COMFYUI_PORT_HOST=${COMFYUI_PORT_HOST:-8188}
+      - COMFYUI_METRICS_PORT=${COMFYUI_METRICS_PORT:-28188}
+      - COMFYUI_URL=${COMFYUI_URL:-}
+      - JUPYTER_PORT_HOST=${JUPYTER_PORT_HOST:-8888}
+      - JUPYTER_METRICS_PORT=${JUPYTER_METRICS_PORT:-28888}
+      - JUPYTER_URL=${JUPYTER_URL:-}
+      - SERVERLESS=${SERVERLESS:-false}
+      - SYNCTHING_UI_PORT_HOST=${SYNCTHING_UI_PORT_HOST:-8384}
+      - SYNCTHING_TRANSPORT_PORT_HOST=${SYNCTHING_TRANSPORT_PORT_HOST:-22999}
+      - SYNCTHING_URL=${SYNCTHING_URL:-}
+    volumes:
+      - /home/admin/workspace:/workspace
+
+  portainer:
+    container_name: "portainer"
+    image: "portainer/portainer-ce:latest"
+    restart: unless-stopped
+    ports:
+      - 9000:9000
+    command: -H unix:///var/run/docker.sock --admin-password='$$2y$$05$$LBdGERoNcNWHVfN400fo6erdVxGworoDy7.FzH53/f0FTvCLZ7D9u' #PortainerAdmin
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+
+volumes:
+  portainer_data:
+    name: "portainer_data"
+
+networks:
+  default:
+    name: homenet
+    driver: bridge

@@ -45,7 +45,7 @@
 #   value       = module.vpc.web_security_group_id
 # }
 
-# output "key_pair_name" {
-#   description = "Name of the key pair"
-#   value       = module.instances.key_pair_name
-# }
+output "ami" {
+  description = "Name of the ami"
+  value       = module.instances.chosen_ami.name
+}

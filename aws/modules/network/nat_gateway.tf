@@ -1,7 +1,7 @@
 
 # NAT Gateways
 resource "aws_eip" "nat_gw_eips" {
-  count = var.number_of_ngws
+  count  = var.number_of_ngws
   domain = "vpc"
   tags = {
     Name = format("%s-nat-gw", var.env)

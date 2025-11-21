@@ -1,6 +1,5 @@
 #!/bin/bash
 
-source /venv/main/bin/activate
 COMFYUI_DIR=${WORKSPACE}/ComfyUI
 
 # Packages are installed after nodes so we can fix them...
@@ -19,7 +18,7 @@ PIP_PACKAGES=(
 NODES=(
     # Always Need
     "https://github.com/kijai/ComfyUI-KJNodes"
-    "https://github.com/ltdrdata/ComfyUI-Impact-Pack"   
+    "https://github.com/ltdrdata/ComfyUI-Impact-Pack"
     "https://github.com/rgthree/rgthree-comfy"
     "https://github.com/pythongosssss/ComfyUI-Custom-Scripts"
 
@@ -57,22 +56,22 @@ WORKFLOWS=(
 
 # ~36GB
 CHECKPOINT_MODELS=(
-    "https://civitai.com/api/download/models/2334591?type=Model&format=SafeTensor&size=pruned&fp=fp16" # CyberRealistic Pony v14.1 - 6.5GB
-    "https://civitai.com/api/download/models/2388548?type=Model&format=SafeTensor&size=full&fp=fp8"    # aSiWa WAN 2.2 I2V 14B Lightspeed MidnightFlirt - 14GB High Noise
-    "https://civitai.com/api/download/models/2388627?type=Model&format=SafeTensor&size=full&fp=fp8"    # aSiWa WAN 2.2 I2V 14B Lightspeed MidnightFlirt - 14GB Low Noise
+    # "https://civitai.com/api/download/models/2334591?type=Model&format=SafeTensor&size=pruned&fp=fp16" # CyberRealistic Pony v14.1 - 6.5GB
+    # "https://civitai.com/api/download/models/2388548?type=Model&format=SafeTensor&size=full&fp=fp8"    # aSiWa WAN 2.2 I2V 14B Lightspeed MidnightFlirt - 14GB High Noise
+    # "https://civitai.com/api/download/models/2388627?type=Model&format=SafeTensor&size=full&fp=fp8"    # aSiWa WAN 2.2 I2V 14B Lightspeed MidnightFlirt - 14GB Low Noise
    # "https://civitai.com/api/download/models/2342708?type=Model&format=SafeTensor&size=full&fp=fp8"    # DaSiWa WAN 2.2 I2V 14B Lightspeed LureNoir - 14GB High Noise
    # "https://civitai.com/api/download/models/2342740?type=Model&format=SafeTensor&size=full&fp=fp8"    # DaSiWa WAN 2.2 I2V 14B Lightspeed LureNoir - 14GB Low Noise
 )
 
 # ~20GB
 DIFFUSION_MODELS=(
-    "https://huggingface.co/Comfy-Org/Qwen-Image-Edit_ComfyUI/resolve/main/split_files/diffusion_models/qwen_image_edit_2509_fp8_e4m3fn.safetensors" #QWEN Image EDIT 2509 20GB
+    # "https://huggingface.co/Comfy-Org/Qwen-Image-Edit_ComfyUI/resolve/main/split_files/diffusion_models/qwen_image_edit_2509_fp8_e4m3fn.safetensors" #QWEN Image EDIT 2509 20GB
 )
 
 # ~17GB
 TEXT_ENCODERS=(
-    "https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors" # 6.8GB
-    "https://huggingface.co/Comfy-Org/Qwen-Image_ComfyUI/resolve/main/split_files/text_encoders/qwen_2.5_vl_7b_fp8_scaled.safetensors" # 9.4GB
+    # "https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors" # 6.8GB
+    # "https://huggingface.co/Comfy-Org/Qwen-Image_ComfyUI/resolve/main/split_files/text_encoders/qwen_2.5_vl_7b_fp8_scaled.safetensors" # 9.4GB
 )
 
 UNET_MODELS=(
@@ -81,29 +80,29 @@ UNET_MODELS=(
 
 # ~33GB
 LORA_MODELS=(
-    "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/loras/wan2.2_i2v_lightx2v_4steps_lora_v1_high_noise.safetensors" #1.3GB
-    "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/loras/wan2.2_i2v_lightx2v_4steps_lora_v1_low_noise.safetensors". #1.3GB
-    "https://huggingface.co/lightx2v/Qwen-Image-Lightning/resolve/main/Qwen-Image-Edit-2509/Qwen-Image-Edit-2509-Lightning-4steps-V1.0-bf16.safetensors" # 811MB
+    # "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/loras/wan2.2_i2v_lightx2v_4steps_lora_v1_high_noise.safetensors" #1.3GB
+    # "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/loras/wan2.2_i2v_lightx2v_4steps_lora_v1_low_noise.safetensors". #1.3GB
+    # "https://huggingface.co/lightx2v/Qwen-Image-Lightning/resolve/main/Qwen-Image-Edit-2509/Qwen-Image-Edit-2509-Lightning-4steps-V1.0-bf16.safetensors" # 811MB
     # "https://civitai.com/api/download/models/2274776?type=Model&format=Diffusers"  # Secret Sauce 28GB
-    "https://civitai.com/api/download/models/2239404?type=Model&format=SafeTensor" # Micro Bikini / Sling Bikini Low 300MB
-    "https://civitai.com/api/download/models/2239110?type=Model&format=SafeTensor" # Micro Bikini / Sling Bikini High 300MB
-    "https://civitai.com/api/download/models/2270582?type=Model&format=SafeTensor" # v4 Instagram Women (Wan 2.1 & 2.2) - Official 2.2 Low 300MB
-    "https://civitai.com/api/download/models/2270577?type=Model&format=SafeTensor" # v4 Instagram Women (Wan 2.1 & 2.2) - Official 2.2 High 300MB
+    # "https://civitai.com/api/download/models/2239404?type=Model&format=SafeTensor" # Micro Bikini / Sling Bikini Low 300MB
+    # "https://civitai.com/api/download/models/2239110?type=Model&format=SafeTensor" # Micro Bikini / Sling Bikini High 300MB
+    # "https://civitai.com/api/download/models/2270582?type=Model&format=SafeTensor" # v4 Instagram Women (Wan 2.1 & 2.2) - Official 2.2 Low 300MB
+    # "https://civitai.com/api/download/models/2270577?type=Model&format=SafeTensor" # v4 Instagram Women (Wan 2.1 & 2.2) - Official 2.2 High 300MB
 )
 
 # ~500MB
 VAE_MODELS=(
-    "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/vae/wan_2.1_vae.safetensors" # 254MB
-    "https://huggingface.co/Comfy-Org/Qwen-Image_ComfyUI/resolve/main/split_files/vae/qwen_image_vae.safetensors" # 250MB
+    # "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/vae/wan_2.1_vae.safetensors" # 254MB
+    # "https://huggingface.co/Comfy-Org/Qwen-Image_ComfyUI/resolve/main/split_files/vae/qwen_image_vae.safetensors" # 250MB
 )
 
 # ~50MB
 ESRGAN_MODELS=(
-    #"https://huggingface.co/Comfy-Org/Real-ESRGAN_repackaged/resolve/main/RealESRGAN_x4plus.safetensors" # 50MB
+    # "https://huggingface.co/Comfy-Org/Real-ESRGAN_repackaged/resolve/main/RealESRGAN_x4plus.safetensors" # 50MB
 )
 
 UPSCALE_MODELS=(
-#    "https://huggingface.co/FacehugmanIII/4x_foolhardy_Remacri/resolve/main/4x_foolhardy_Remacri.pth" #67MB
+    # "https://huggingface.co/FacehugmanIII/4x_foolhardy_Remacri/resolve/main/4x_foolhardy_Remacri.pth" #67MB
 )
 
 CONTROLNET_MODELS=(

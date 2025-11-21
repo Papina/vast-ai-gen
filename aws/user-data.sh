@@ -16,7 +16,7 @@ systemctl enable docker
 usermod -aG docker admin
 
 # Install essential tools
-apt-get install -y git curl wget vim htop nano jq unzip software-properties-common
+apt-get install -y git htop nano jq unzip
 
 # Cleanup
 rm -rf /var/lib/apt/lists/*
