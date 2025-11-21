@@ -110,13 +110,8 @@ build {
       "apt-get update && apt-get install -y docker-ce docker-ce-cli containerd.io",
       "systemctl enable docker",
       "usermod -aG docker admin",
-      "curl -L \"https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)\" -o /usr/local/bin/docker-compose",
-      "chmod +x /usr/local/bin/docker-compose",
       "apt-get install -y git curl wget vim htop nano jq unzip software-properties-common",
       "apt-get install -y python3 python3-pip python3-venv",
-      "apt-get install -y nginx",
-      "systemctl enable nginx",
-      "systemctl stop nginx",
       "rm -rf /var/lib/apt/lists/*",
       "echo 'Defaults:admin !requiretty' >> /etc/sudoers",
       "echo 'admin ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers"
