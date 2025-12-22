@@ -1,5 +1,6 @@
 #!/bin/bash
 
+source /venv/main/bin/activate
 COMFYUI_DIR=${WORKSPACE}/ComfyUI
 
 # Packages are installed after nodes so we can fix them...
@@ -16,37 +17,27 @@ PIP_PACKAGES=(
 
 # ~30 Minutes for the ComfyUI custom nodes
 NODES=(
-    # Always Need
-    "https://github.com/kijai/ComfyUI-KJNodes"
-    "https://github.com/ltdrdata/ComfyUI-Impact-Pack"
-    "https://github.com/rgthree/rgthree-comfy"
-    "https://github.com/pythongosssss/ComfyUI-Custom-Scripts"
-
-    "https://github.com/justUmen/Bjornulf_custom_nodes"
-    "https://github.com/kijai/ComfyUI-MMAudio"
-    "https://github.com/Artificial-Sweetener/comfyui-WhiteRabbit"
-    "https://github.com/Extraltodeus/Skimmed_CFG"
-    "https://github.com/Fannovel16/ComfyUI-Frame-Interpolation"
+# Always Need
+    # Krita
+    "https://github.com/Acly/comfyui-tooling-nodes"
     "https://github.com/Fannovel16/comfyui_controlnet_aux"
-    "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite"
-    "https://github.com/LukeCoulson1/Comfyui_LoraCombine"
-    "https://github.com/M1kep/ComfyLiterals"
-    "https://github.com/SeargeDP/SeargeSDXL"
-    "https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes"
-    "https://github.com/alexopus/ComfyUI-Image-Saver"
-    "https://github.com/chibiace/ComfyUI-Chibi-Nodes"
-    "https://github.com/cubiq/ComfyUI_IPAdapter_plus"
-    "https://github.com/giriss/comfy-image-saver"
-    "https://github.com/jags111/efficiency-nodes-comfyui"
-    "https://github.com/jamesWalker55/comfyui-various"
-    "https://github.com/moonwhaler/comfyui-seedvr2-tilingupscaler"
-    "https://github.com/receyuki/comfyui-prompt-reader-node"
-    "https://github.com/spacepxl/ComfyUI-Image-Filters"
-    "https://github.com/stduhpf/ComfyUI-WanMoeKSampler"
-    "https://github.com/twri/sdxl_prompt_styler"
-    "https://github.com/un-seen/comfyui-tensorops"
-    "https://github.com/vrgamegirl19/comfyui-vrgamedevgirl"
-    "https://github.com/willmiao/ComfyUI-Lora-Manager"
+    "https://github.com/cubiq/ComfyUI_IPAdapter_plus"    
+
+    # Model Loading
+    "https://github.com/city96/ComfyUI-GGUF.git"
+
+    # Enhancements, Quality of Life
+    "https://github.com/audioscavenger/save-image-extended-comfyui"
+    "https://github.com/crystian/ComfyUI-Crystools"
+    "https://github.com/kijai/ComfyUI-KJNodes"
+    "https://github.com/ltdrdata/ComfyUI-Inspire-Pack"
+    "https://github.com/pythongosssss/ComfyUI-Custom-Scripts"
+    "https://github.com/rgthree/rgthree-comfy"
+
+    # Upscaling, Detailing
+    "https://github.com/ltdrdata/ComfyUI-Impact-Pack"   
+    "https://github.com/ltdrdata/ComfyUI-Impact-Subpack"
+    "https://github.com/numz/ComfyUI-SeedVR2_VideoUpscaler"
 )
 
 WORKFLOWS=(
@@ -56,22 +47,18 @@ WORKFLOWS=(
 
 # ~36GB
 CHECKPOINT_MODELS=(
-    # "https://civitai.com/api/download/models/2334591?type=Model&format=SafeTensor&size=pruned&fp=fp16" # CyberRealistic Pony v14.1 - 6.5GB
-    # "https://civitai.com/api/download/models/2388548?type=Model&format=SafeTensor&size=full&fp=fp8"    # aSiWa WAN 2.2 I2V 14B Lightspeed MidnightFlirt - 14GB High Noise
-    # "https://civitai.com/api/download/models/2388627?type=Model&format=SafeTensor&size=full&fp=fp8"    # aSiWa WAN 2.2 I2V 14B Lightspeed MidnightFlirt - 14GB Low Noise
-   # "https://civitai.com/api/download/models/2342708?type=Model&format=SafeTensor&size=full&fp=fp8"    # DaSiWa WAN 2.2 I2V 14B Lightspeed LureNoir - 14GB High Noise
-   # "https://civitai.com/api/download/models/2342740?type=Model&format=SafeTensor&size=full&fp=fp8"    # DaSiWa WAN 2.2 I2V 14B Lightspeed LureNoir - 14GB Low Noise
+    "https://civitai.com/api/download/models/2388548?type=Model&format=SafeTensor&size=full&fp=fp8"    # aSiWa WAN 2.2 I2V 14B Lightspeed MidnightFlirt - 14GB High Noise
+    "https://civitai.com/api/download/models/2388627?type=Model&format=SafeTensor&size=full&fp=fp8"    # aSiWa WAN 2.2 I2V 14B Lightspeed MidnightFlirt - 14GB Low Noise
 )
 
 # ~20GB
 DIFFUSION_MODELS=(
-    # "https://huggingface.co/Comfy-Org/Qwen-Image-Edit_ComfyUI/resolve/main/split_files/diffusion_models/qwen_image_edit_2509_fp8_e4m3fn.safetensors" #QWEN Image EDIT 2509 20GB
+
 )
 
 # ~17GB
 TEXT_ENCODERS=(
-    # "https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors" # 6.8GB
-    # "https://huggingface.co/Comfy-Org/Qwen-Image_ComfyUI/resolve/main/split_files/text_encoders/qwen_2.5_vl_7b_fp8_scaled.safetensors" # 9.4GB
+    "https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors" # 6.8GB
 )
 
 UNET_MODELS=(
@@ -80,35 +67,42 @@ UNET_MODELS=(
 
 # ~33GB
 LORA_MODELS=(
-    # "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/loras/wan2.2_i2v_lightx2v_4steps_lora_v1_high_noise.safetensors" #1.3GB
-    # "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/loras/wan2.2_i2v_lightx2v_4steps_lora_v1_low_noise.safetensors". #1.3GB
-    # "https://huggingface.co/lightx2v/Qwen-Image-Lightning/resolve/main/Qwen-Image-Edit-2509/Qwen-Image-Edit-2509-Lightning-4steps-V1.0-bf16.safetensors" # 811MB
-    # "https://civitai.com/api/download/models/2274776?type=Model&format=Diffusers"  # Secret Sauce 28GB
-    # "https://civitai.com/api/download/models/2239404?type=Model&format=SafeTensor" # Micro Bikini / Sling Bikini Low 300MB
-    # "https://civitai.com/api/download/models/2239110?type=Model&format=SafeTensor" # Micro Bikini / Sling Bikini High 300MB
-    # "https://civitai.com/api/download/models/2270582?type=Model&format=SafeTensor" # v4 Instagram Women (Wan 2.1 & 2.2) - Official 2.2 Low 300MB
-    # "https://civitai.com/api/download/models/2270577?type=Model&format=SafeTensor" # v4 Instagram Women (Wan 2.1 & 2.2) - Official 2.2 High 300MB
+    "https://huggingface.co/lightx2v/Qwen-Image-Lightning/resolve/main/Qwen-Image-Lightning-4steps-V2.0.safetensors" # 1.7GB
+    "https://huggingface.co/lightx2v/Qwen-Image-Lightning/resolve/main/Qwen-Image-Lightning-8steps-V2.0.safetensors" # 1.7GB
+
+    "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/loras/wan2.2_i2v_lightx2v_4steps_lora_v1_high_noise.safetensors" #1.3GB
+    "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/loras/wan2.2_i2v_lightx2v_4steps_lora_v1_low_noise.safetensors"  #1.3GB
+
+    "https://civitai.com/api/download/models/2239110?type=Model&format=SafeTensor" # Micro Bikini / Sling Bikini High 300MB
+    "https://civitai.com/api/download/models/2239404?type=Model&format=SafeTensor" # Micro Bikini / Sling Bikini Low 300MB
+    "https://civitai.com/api/download/models/2270577?type=Model&format=SafeTensor" # v4 Instagram Women (Wan 2.1 & 2.2) - Official 2.2 High 300MB
+    "https://civitai.com/api/download/models/2270582?type=Model&format=SafeTensor" # v4 Instagram Women (Wan 2.1 & 2.2) - Official 2.2 Low 300MB
+    "https://civitai.com/api/download/models/2274776?type=Model&format=Diffusers"  # Secret Sauce 28GB
 )
 
 # ~500MB
 VAE_MODELS=(
-    # "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/vae/wan_2.1_vae.safetensors" # 254MB
-    # "https://huggingface.co/Comfy-Org/Qwen-Image_ComfyUI/resolve/main/split_files/vae/qwen_image_vae.safetensors" # 250MB
+    "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/vae/wan2.2_vae.safetensors"  # 1.5GB
+    "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/vae/wan_2.1_vae.safetensors" # 254MB
 )
 
 # ~50MB
 ESRGAN_MODELS=(
-    # "https://huggingface.co/Comfy-Org/Real-ESRGAN_repackaged/resolve/main/RealESRGAN_x4plus.safetensors" # 50MB
+
 )
 
 UPSCALE_MODELS=(
-    # "https://huggingface.co/FacehugmanIII/4x_foolhardy_Remacri/resolve/main/4x_foolhardy_Remacri.pth" #67MB
+
 )
 
 CONTROLNET_MODELS=(
-    # "https://huggingface.co/comfyanonymous/ControlNet-v1-1_fp16_safetensors/resolve/main/control_v11p_sd15_openpose_fp16.safetensors" # 723MB
+
 )
 
+SEEDVR2=(
+    "https://huggingface.co/numz/SeedVR2_comfyUI/resolve/main/seedvr2_ema_7b_fp16.safetensors" # 16.5 GB SeedVR2 Upscaler
+
+)
 ### DO NOT EDIT BELOW HERE UNLESS YOU KNOW WHAT YOU ARE DOING ###
 
 function provisioning_start() {
@@ -142,7 +136,10 @@ function provisioning_start() {
         "${ESRGAN_MODELS[@]}"
     provisioning_get_files \
         "${COMFYUI_DIR}/models/upscale_models" \
-        "${UPSCALE_MODELS[@]}"        
+        "${UPSCALE_MODELS[@]}"
+    provisioning_get_files \
+        "${COMFYUI_DIR}/models/SEEDVR2" \
+        "${SEEDVR2[@]}"   
     provisioning_print_end
 }
 
