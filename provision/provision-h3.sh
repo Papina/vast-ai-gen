@@ -99,7 +99,7 @@ function provisioning_get_nodes() {
 
 # Large files, so fetch them in parallel and skip any already on disk.
 function provisioning_get_files() {
-    if [[ -z $2 ]]; then return 1; fi
+    if [[ -z $2 ]]; then return 0; fi
 
     dir="$1"
     mkdir -p "$dir"
