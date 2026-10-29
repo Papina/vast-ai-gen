@@ -3,8 +3,9 @@
 source /venv/main/bin/activate
 COMFYUI_DIR=${WORKSPACE}/ComfyUI
 
-# Lean Z-Image Turbo (~21GB, core nodes only) for testing the Vast serverless pipeline
-# before the larger H3 setup. Same fail-on-error download functions as provision-h3.sh.
+# Lean Qwen-Image 2.1 Edit (~16GB, core nodes only) for testing the Vast serverless pipeline
+# before the larger H3 setup: a reference-image model with int8_convrot weights like H3's.
+# Same fail-on-error download functions as provision-h3.sh.
 
 APT_PACKAGES=(
     #"package-1"
@@ -18,23 +19,23 @@ NODES=(
 
 )
 
-# ~12GB
+# ~7GB
 DIFFUSION_MODELS=(
-    "https://huggingface.co/Comfy-Org/z_image_turbo/resolve/main/split_files/diffusion_models/z_image_turbo_bf16.safetensors" # 12.3GB Z-Image-Turbo
+    "https://huggingface.co/Comfy-Org/Qwen-Image-2.1/resolve/main/diffusion_models/qwen_image_2.1_int8_convrot.safetensors" # 6.8GB
 )
 
-# ~8GB
+# ~9GB
 TEXT_ENCODERS=(
-    "https://huggingface.co/Comfy-Org/z_image_turbo/resolve/main/split_files/text_encoders/qwen_3_4b.safetensors" # 8.4GB qwen3_4b (Z-Image Turbo)
+    "https://huggingface.co/Comfy-Org/Qwen-Image-2.1/resolve/main/text_encoders/qwen3vl_8b_int8_convrot.safetensors" # 8.7GB
 )
 
 LORA_MODELS=(
 
 )
 
-# ~333MB
+# ~600MB
 VAE_MODELS=(
-    "https://huggingface.co/Comfy-Org/z_image_turbo/resolve/main/split_files/vae/ae.safetensors" # 333MB Z-Image Turbo / Flux VAE
+    "https://huggingface.co/Comfy-Org/Qwen-Image-2.1/resolve/main/vae/qwen_image_2.1_vae_bf16.safetensors" # 600MB
 )
 
 ### DO NOT EDIT BELOW HERE UNLESS YOU KNOW WHAT YOU ARE DOING ###
